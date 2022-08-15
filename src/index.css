@@ -1,0 +1,71 @@
+:root {
+  --main-bg: #3a3845;
+  --hover: #6d6981;
+  --secondary-bg: #826f66;
+  --primary-text: #f7ccac;
+  --secondary-text: #3a3845;
+  --contrast-color: #c69b7b;
+}
+
+.quiz-window {
+  background-color: var(--main-bg);
+  width: 1000px;
+  min-height: 30rem;
+}
+
+.window {
+  background-color: var(--contrast-color);
+}
+
+h1 {
+  font-size: 32px;
+  color: var(--secondary-text);
+}
+
+/* Bootstrap override */
+
+.btn-primary {
+  color: var(--primary-text);
+  background-color: var(--main-bg);
+  border-color: var(--main-bg);
+}
+.btn-primary:hover {
+  color: var(--primary-text);
+  background-color: var(--hover);
+  border-color: var(--hover);
+}
+.btn-check:focus + .btn-primary,
+.btn-primary:focus {
+  color: var(--primary-text);
+  background-color: var(--hover);
+  border-color: var(--hover);
+  box-shadow: 0 0 0 0.25rem rgba(109, 105, 129, 0.5);
+}
+.btn-check:checked + .btn-primary,
+.btn-check:active + .btn-primary,
+.btn-primary:active,
+.btn-primary.active,
+.show > .btn-primary.dropdown-toggle {
+  color: var(--primary-text);
+  background-color: var(--hover);
+  border-color: var(--hover);
+}
+.btn-check:checked + .btn-primary:focus,
+.btn-check:active + .btn-primary:focus,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.25rem rgba(109, 105, 129, 0.5);
+}
+.btn-primary:disabled,
+.btn-primary.disabled {
+  color: var(--primary-text);
+  background-color: var(--main-bg);
+  border-color: var(--main-bg);
+}
+
+.dropdown-menu {
+  max-height: 280px;
+  width: fit-content;
+  overflow-y: auto;
+}
