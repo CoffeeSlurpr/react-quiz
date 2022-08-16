@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-
-function Question() {
-  return (
-    <div className="window rounded-4 h-50 text-center">
-      <h1>Who is Joe?</h1>
-    </div>
-  );
-}
-
-export default Question;
-=======
 import React from 'react';
 
 function Question({ quizData }) {
@@ -24,4 +11,3 @@ function Question({ quizData }) {
 }
 
 export default Question;
->>>>>>> c0f34ad (upload commit)
