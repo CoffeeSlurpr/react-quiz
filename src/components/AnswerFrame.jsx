@@ -3,15 +3,6 @@ import { Button } from 'react-bootstrap';
 
 function Options({ quizData, nextQuestion }) {
   const [answerOptions, setAnswerOptions] = useState([]);
-  const [userAnswers, setUserAnswers] = useState([]);
-
-  const chooseAnswer = (answer) => {
-    //TODO one answer late
-    //setUserAnswers((userAnswers) => [...userAnswers, answer]);
-    setUserAnswers(answer);
-    console.log(userAnswers);
-    nextQuestion();
-  };
 
   const shuffleArray = (Array) => {
     for (let i = Array.length - 1; i > 0; i--) {
@@ -30,6 +21,10 @@ function Options({ quizData, nextQuestion }) {
       shuffleArray(Array);
       setAnswerOptions(Array);
     }
+
+    if (!quizData) {
+      setAnswerOptions([]);
+    }
   }, [quizData]);
 
   return (
@@ -39,7 +34,7 @@ function Options({ quizData, nextQuestion }) {
           <Button
             key={index}
             onClick={() => {
-              chooseAnswer(answer);
+              nextQuestion(answer);
             }}
           >
             {answer}

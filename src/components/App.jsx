@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Question from './Question';
 import Options from './Options';
 import AnswerFrame from './AnswerFrame';
@@ -9,11 +9,34 @@ function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
+  const [quizResult, setQuizResult] = useState(0);
 
-  const nextQuestion = () => {
-    if (currentQuestion < quizData.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
+  useEffect(() => {
+    if (userAnswers.length === quizData.length) {
+      compareAnswers(userAnswers, correctAnswers);
+      setQuizData([]);
     }
+  }, [userAnswers]);
+
+  const nextQuestion = (answer) => {
+    setUserAnswers((userAnswers) => [...userAnswers, answer]);
+    setCurrentQuestion(currentQuestion + 1);
+  };
+
+  const compareAnswers = (userAnswers, correctAnswers) => {
+    let count = 0;
+    userAnswers.map((answer, index) => {
+      if (correctAnswers[index] === answer) {
+        /* TODO nem fut le
+        setQuizResult(quizResult + 1); */
+        count = count + 1;
+      }
+    });
+    console.log(count);
+    setQuizResult(count);
+    console.log(quizResult);
+    //console.log(userAnswers);
+    //console.log(correctAnswers);
   };
 
   const requestQuiz = ({ category, difficulty, type }) => {
@@ -26,6 +49,12 @@ function App() {
         },
       })
       .then((results) => {
+        setQuizData([]);
+        setCurrentQuestion(0);
+        setCorrectAnswers([]);
+        setUserAnswers([]);
+        setQuizResult(0);
+
         setQuizData(results.data.results);
         results.data.results.map((quiz) => {
           return setCorrectAnswers((correctAnswers) => [
@@ -42,7 +71,10 @@ function App() {
   return (
     <div className="quiz-window container rounded-4 d-flex justify-content-between mt-5 mx-auto">
       <div className="d-flex flex-column col-7 my-3">
-        <Question quizData={quizData[currentQuestion]} />
+        <Question
+          quizData={quizData[currentQuestion]}
+          index={currentQuestion + 1}
+        />
         <Options getParams={requestQuiz} />
       </div>
       <AnswerFrame

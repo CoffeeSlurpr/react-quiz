@@ -1,10 +1,14 @@
 :root {
   --main-bg: #3a3845;
   --hover: #6d6981;
-  --secondary-bg: #826f66;
+  --secondary-bg: #25201d;
   --primary-text: #f7ccac;
   --secondary-text: #3a3845;
   --contrast-color: #c69b7b;
+}
+
+body {
+  background-color: var(--secondary-bg);
 }
 
 .quiz-window {
