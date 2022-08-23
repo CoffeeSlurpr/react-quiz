@@ -27,16 +27,10 @@ function App() {
     let count = 0;
     userAnswers.map((answer, index) => {
       if (correctAnswers[index] === answer) {
-        /* TODO nem fut le
-        setQuizResult(quizResult + 1); */
         count = count + 1;
       }
     });
-    console.log(count);
-    setQuizResult(count);
-    console.log(quizResult);
-    //console.log(userAnswers);
-    //console.log(correctAnswers);
+    return setQuizResult(count);
   };
 
   const requestQuiz = ({ category, difficulty, type }) => {
@@ -74,6 +68,7 @@ function App() {
         <Question
           quizData={quizData[currentQuestion]}
           index={currentQuestion + 1}
+          quizResult={quizResult}
         />
         <Options getParams={requestQuiz} />
       </div>
